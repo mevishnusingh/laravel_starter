@@ -15,8 +15,13 @@ class RoleSeeder extends Seeder
      */
     public function run()
     {
-        Role::create(['name' => 'admin']);
-        Role::create(['name' => 'writer']);
-        Role::create(['name' => 'user']);
+        $admin_role = Role::create(['name' => 'admin']);
+        $admin_role->givePermissionTo(['new post', 'edit post', 'category', 'role']);
+
+        $writer_role = Role::create(['name' => 'writer']);
+        $writer_role->givePermissionTo(['new post', 'edit post', 'category']);
+
+        $user_role = Role::create(['name' => 'user']);
+        $user_role->givePermissionTo(['new post', 'edit post']);
     }
 }
