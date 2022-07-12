@@ -33,6 +33,7 @@ Route::get('/admin', function () {
 
 Route::group( ['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
+    Route::get('/roles/permissions', [RoleController::class, 'permissions'])->name('roles.permissions');
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('posts', 'PostController');
