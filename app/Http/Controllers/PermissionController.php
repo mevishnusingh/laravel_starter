@@ -25,7 +25,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        flash('Pending for implementation.');
+        return view('admin.permission.create');
     }
 
     /**
@@ -38,11 +38,18 @@ class PermissionController extends Controller
     {
         $this->validate($request, ['name' => 'required|unique:permissions']);
 
-        if( Permission::create($request->only('name')) ) {
-            flash('Permission Added');
+        $permissions = [
+            'view_' . $request->name,
+            'add_' . $request->name,
+            'edit_' . $request->name,
+            'delete_' . $request->name
+        ];
+        foreach ($permissions as $perms) {
+            $result = Permission::firstOrCreate(['name' => $perms]);
+            $result->assignRole('Admin');
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Record save successfully.');
     }
 
     /**
@@ -53,7 +60,7 @@ class PermissionController extends Controller
      */
     public function show(Permission $permission)
     {
-        flash('Pending for implementation.');
+        dd('Pending for implementation.');
     }
 
     /**
@@ -64,7 +71,7 @@ class PermissionController extends Controller
      */
     public function edit(Permission $permission)
     {
-        flash('Pending for implementation.');
+        dd('Pending for implementation.');
     }
 
     /**
@@ -90,7 +97,7 @@ class PermissionController extends Controller
         //     flash()->error( 'Role with id '. $role->id .' note found.');
         // }
 
-        flash('Pending for implementation.');
+        dd('Pending for implementation.');
         return redirect()->route('permissions.index');
     }
 
@@ -102,6 +109,6 @@ class PermissionController extends Controller
      */
     public function destroy(Permission $permission)
     {
-        flash('Pending for implementation.');
+        dd('Pending for implementation.');
     }
 }

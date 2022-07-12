@@ -9,11 +9,13 @@
         </ol>
         @include('layouts.flash-message')
         <div class="card mb-4">
-            <div class="card-header">
-                <div class="pull-left">
-                    <a href="{{ route('roles.create') }}" class="btn btn-primary" style="float: right;">Add Roles</a>
+            @can('add_roles')
+                <div class="card-header">
+                    <div class="pull-left">
+                        <a href="{{ route('roles.create') }}" class="btn btn-primary" style="float: right;">Add Roles</a>
+                    </div>
                 </div>
-            </div>
+            @endcan
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
@@ -47,7 +49,7 @@
                                             @endcan
                                         </td>
                                     @endcan --}}
-                                    <td><a href="{{route('roles.permissions')}}#{{$role->name}}">Show</a></td>
+                                    <td><a href="{{ route('roles.permissions') }}#{{ $role->name }}">Show</a></td>
                                 </tr>
                             @endforeach
                         @endif

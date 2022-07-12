@@ -41,10 +41,10 @@ class RoleController extends Controller
         $this->validate($request, ['name' => 'required|unique:roles']);
 
         if( Role::create($request->only('name')) ) {
-            // dd('Role Added');
+            return redirect()->back()->with('success', 'Record save successfully.');
         }
 
-        return redirect()->back()->with('success', 'Record save successfully.');
+        return redirect()->back()->with('error', 'Record not saved. Please try again later.');
     }
 
     /**
@@ -55,7 +55,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        flash('Pending for implementation.');
+        dd('Pending for implementation.');
     }
 
     /**

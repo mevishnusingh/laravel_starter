@@ -9,11 +9,13 @@
         </ol>
         @include('layouts.flash-message')
         <div class="card mb-4">
-            <div class="card-header">
-                <div class="pull-left">
-                    <a href="{{ route('users.create') }}" class="btn btn-primary" style="float: right;">Add Users</a>
+            @can('add_users')
+                <div class="card-header">
+                    <div class="pull-left">
+                        <a href="{{ route('users.create') }}" class="btn btn-primary" style="float: right;">Add Users</a>
+                    </div>
                 </div>
-            </div>
+            @endcan
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
@@ -41,12 +43,16 @@
                                         <td class="text-center">
                                             @can('edit_users')
                                                 <a class="btn btn-sm btn-success"
-                                                    href="{{ route('users.show', $user->id) }}">Edit</a>
+                                                    href="{{ route('users.edit', $user->id) }}">Edit</a>
                                                 |
                                             @endcan
                                             @can('delete_users')
-                                                <a class="btn btn-sm btn-danger"
-                                                    href="{{ route('users.destroy', $user->id) }}">Delete</a>
+                                                <form class="d-inline" action="{{ route('users.destroy', $user->id) }}"
+                                                    method="Post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                                                </form>
                                             @endcan
                                         </td>
                                     @endcan
