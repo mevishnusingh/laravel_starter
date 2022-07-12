@@ -11,7 +11,8 @@
         <div class="card mb-4">
             <div class="card-header">
                 <div class="pull-left">
-                    <a href="{{route('roles.create')}}" class="btn btn-primary" style="float: right;">Add Permissions</a>
+                    <a href="{{ route('permissions.create') }}" class="btn btn-primary" style="float: right;">Add
+                        Permissions</a>
                 </div>
             </div>
             <div class="card-body">
@@ -21,7 +22,9 @@
                             <th>S. No</th>
                             <th>Permission</th>
                             <th>Created At</th>
-                            <th class="text-center">Operations</th>
+                            @can('edit_permissions', 'delete_permissions')
+                                <th class="text-center">Operations</th>
+                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -31,13 +34,19 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $permission->name }}</td>
                                     <td>{{ $permission->created_at->toFormattedDateString() }}</td>
-                                    <td class="text-center">
-                                        <a class="btn btn-sm btn-success"
-                                            href="{{route('permissions.show', $permission->id)}}">Edit</a>
-                                        |
-                                        <a class="btn btn-sm btn-danger"
-                                            href="{{route('permissions.destroy', $permission->id)}}">Delete</a>
-                                    </td>
+                                    @can('edit_permissions', 'delete_permissions')
+                                        <td class="text-center">
+                                            @can('edit_permissions')
+                                                <a class="btn btn-sm btn-success"
+                                                    href="{{ route('permissions.show', $role->id) }}">Edit</a>
+                                                |
+                                            @endcan
+                                            @can('delete_permissions')
+                                                <a class="btn btn-sm btn-danger"
+                                                    href="{{ route('permissions.destroy', $role->id) }}">Delete</a>
+                                            @endcan
+                                        </td>
+                                    @endcan
                                 </tr>
                             @endforeach
                         @endif
