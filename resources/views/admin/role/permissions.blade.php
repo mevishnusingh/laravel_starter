@@ -14,7 +14,7 @@
                 @csrf
                 @method('PUT')
                 <div class="card mb-4">
-                    <div class="card-header" id="{{$role->name}}">
+                    <div class="card-header" id="{{ $role->name }}">
                         {{ $role->name }} Permissions
                     </div>
                     <div class="card-body">
@@ -29,9 +29,8 @@
                                     ?>
                                     <div class="col-lg-3">
                                         <div class="form-check">
-                                            <input {{($role->name == 'Admin') ? 'disabled':''}} name="permissions[]" type="checkbox"
-                                                class="form-check-input"
-                                                value="{{ $permission->id }}"
+                                            <input {{ $role->name == 'Admin' ? 'disabled' : '' }} name="permissions[]"
+                                                type="checkbox" class="form-check-input" value="{{ $permission->id }}"
                                                 id="permission_{{ $role->id }}_{{ $permission->id }}"
                                                 {{ $permission_found ? 'checked' : '' }}>
                                             <label class="form-check-label"
@@ -41,13 +40,15 @@
                                 @endforeach
                             </div>
                         </div>
-                        @if ($role->name != 'Admin')
-                            <div class="row text-right">
-                                <div class="mb-3">
-                                    <input type="submit" class="btn btn-primary" value="Submit">
+                        @can('add_roles', 'add_roles')
+                            @if ($role->name != 'Admin')
+                                <div class="row text-right">
+                                    <div class="mb-3">
+                                        <input type="submit" class="btn btn-primary" value="Submit">
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                        @endcan
                     </div>
                 </div>
             </form>
