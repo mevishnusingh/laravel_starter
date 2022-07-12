@@ -21,9 +21,10 @@
                             <th>S. No</th>
                             <th>Role</th>
                             <th>Created At</th>
-                            @can('edit_roles', 'delete_roles')
+                            {{-- @can('edit_roles', 'delete_roles')
                                 <th class="text-center">Operations</th>
-                            @endcan
+                            @endcan --}}
+                            <th>Tasks</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,7 +34,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $role->name }}</td>
                                     <td>{{ $role->created_at->toFormattedDateString() }}</td>
-                                    @can('edit_roles', 'delete_roles')
+                                    {{-- @can('edit_roles', 'delete_roles')
                                         <td class="text-center">
                                             @can('edit_roles')
                                                 <a class="btn btn-sm btn-success"
@@ -45,7 +46,8 @@
                                                     href="{{ route('roles.destroy', $role->id) }}">Delete</a>
                                             @endcan
                                         </td>
-                                    @endcan
+                                    @endcan --}}
+                                    <td><a href="{{route('roles.permissions')}}#{{$role->name}}">Show</a></td>
                                 </tr>
                             @endforeach
                         @endif

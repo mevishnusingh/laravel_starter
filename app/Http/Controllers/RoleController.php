@@ -66,7 +66,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        flash('Pending for implementation.');
+        dd('Pending for implementation.');
     }
 
     /**
@@ -86,13 +86,14 @@ class RoleController extends Controller
             }
 
             $permissions = $request->get('permissions', []);
+
             $role->syncPermissions($permissions);
-            dd( $role->name . ' permissions has been updated.');
+            return redirect()->back()->with('success', $role->name . ' permissions has been updated.');
         } else {
-            dd()->error( 'Role with id '. $role->id .' note found.');
+            return redirect()->back()->with('error', 'Role with id '. $role->id .' note found.');
         }
 
-        return redirect()->route('roles.index');
+        return redirect()->back();
     }
 
     /**
@@ -105,5 +106,12 @@ class RoleController extends Controller
     {
         dd('Pending for implementation.');
         return redirect()->route('roles.index');
+    }
+
+    public function permissions(){
+        $roles = Role::all();
+        $permissions = Permission::all();
+
+        return view('admin.role.permissions', compact('roles', 'permissions'));
     }
 }
