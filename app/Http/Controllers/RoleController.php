@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $result = Role::latest()->paginate();
+        return view('admin.role.index', compact('result'));
     }
 
     /**
@@ -24,7 +26,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.role.create');
     }
 
     /**
@@ -35,7 +37,13 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, ['name' => 'required|unique:roles']);
+
+        if( Role::create($request->only('name')) ) {
+            // dd('Role Added');
+        }
+
+        return redirect()->back();
     }
 
     /**
@@ -46,7 +54,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        dd('Pending for implementation.');
     }
 
     /**
@@ -57,7 +65,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        dd('Pending for implementation.');
     }
 
     /**
@@ -69,7 +77,21 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        if($role = Role::findOrFail($role->id)) {
+            // admin role has everything
+            if($role->name === 'Admin') {
+                $role->syncPermissions(Permission::all());
+                return redirect()->route('roles.index');
+            }
+
+            $permissions = $request->get('permissions', []);
+            $role->syncPermissions($permissions);
+            dd( $role->name . ' permissions has been updated.');
+        } else {
+            dd()->error( 'Role with id '. $role->id .' note found.');
+        }
+
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -80,6 +102,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        dd('Pending for implementation.');
+        return redirect()->route('roles.index');
     }
 }
