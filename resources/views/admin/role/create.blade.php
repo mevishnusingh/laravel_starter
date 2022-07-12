@@ -8,6 +8,7 @@
             <li class="breadcrumb-item"><a href="{{ route('roles.index') }}">Roles</a></li>
             <li class="breadcrumb-item active">Add Role</li>
         </ol>
+        @include('layouts.flash-message')
         <form action="{{ route('roles.store') }}" method="post">
             @csrf
             <div class="mb-3">
