@@ -7,6 +7,7 @@
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Users</li>
         </ol>
+        @include('layouts.flash-message')
         <div class="card mb-4">
             <div class="card-header">
                 <div class="pull-left">

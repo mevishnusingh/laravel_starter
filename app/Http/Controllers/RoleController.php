@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class RoleController extends Controller
 {
@@ -43,7 +44,7 @@ class RoleController extends Controller
             // dd('Role Added');
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Record save successfully.');
     }
 
     /**
@@ -54,7 +55,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        dd('Pending for implementation.');
+        flash('Pending for implementation.');
     }
 
     /**
@@ -65,7 +66,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        dd('Pending for implementation.');
+        flash('Pending for implementation.');
     }
 
     /**
