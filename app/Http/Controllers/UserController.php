@@ -82,7 +82,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'id');
         $permissions = Permission::all('name', 'id');
 
