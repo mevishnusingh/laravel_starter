@@ -22,6 +22,11 @@ class Permission extends \Spatie\Permission\Models\Permission
             'add_roles',
             'edit_roles',
             'delete_roles',
+
+            'view_permissions',
+            'add_permissions',
+            'edit_permissions',
+            'delete_permissions',
         ];
     }
 }

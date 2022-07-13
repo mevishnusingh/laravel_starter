@@ -7,18 +7,24 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link" href="{{ route('users.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Users
-                </a>
-                <a class="nav-link" href="{{ route('roles.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                    Roles
-                </a>
-                <a class="nav-link" href="{{ route('permissions.index') }}">
-                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                    Permissions
-                </a>
+                @can('view_users')
+                    <a class="nav-link" href="{{ route('users.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Users
+                    </a>
+                @endcan
+                @can('view_roles')
+                    <a class="nav-link" href="{{ route('roles.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                        Roles
+                    </a>
+                @endcan
+                @can('view_permissions')
+                    <a class="nav-link" href="{{ route('permissions.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Permissions
+                    </a>
+                @endcan
             </div>
         </div>
         <div class="sb-sidenav-footer">
