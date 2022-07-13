@@ -24,9 +24,6 @@
                             <th>S. No</th>
                             <th>Permission</th>
                             <th>Created At</th>
-                            @can('edit_permissions', 'delete_permissions')
-                                <th class="text-center">Operations</th>
-                            @endcan
                         </tr>
                     </thead>
                     <tbody>
@@ -36,19 +33,6 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $permission->name }}</td>
                                     <td>{{ $permission->created_at->toFormattedDateString() }}</td>
-                                    @can('edit_permissions', 'delete_permissions')
-                                        <td class="text-center">
-                                            @can('edit_permissions')
-                                                <a class="btn btn-sm btn-success"
-                                                    href="{{ route('permissions.show', $permission->id) }}">Edit</a>
-                                                |
-                                            @endcan
-                                            @can('delete_permissions')
-                                                <a class="btn btn-sm btn-danger"
-                                                    href="{{ route('permissions.destroy', $permission->id) }}">Delete</a>
-                                            @endcan
-                                        </td>
-                                    @endcan
                                 </tr>
                             @endforeach
                         @endif

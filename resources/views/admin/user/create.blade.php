@@ -13,7 +13,7 @@
             @csrf
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" placeholder="User Name" id="name" name="name">
+                <input type="text" class="form-control" placeholder="User Name" id="name" name="name" value="{{old('name')}}">
                 @if ($errors->has('name'))
                     <span style="color: red">
                         {{ $errors->first('name') }}
@@ -22,7 +22,7 @@
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" placeholder="User email" id="email" name="email">
+                <input type="text" class="form-control" placeholder="User email" id="email" name="email" value="{{old('email')}}">
                 @if ($errors->has('email'))
                     <span style="color: red">
                         {{ $errors->first('email') }}
@@ -42,7 +42,7 @@
                 <label for="roles" class="form-label">Roles</label>
                 <select name="roles[]" id="roles" class="form-control" multiple>
                     @foreach ($roles as $role_id => $role)
-                        <option value="{{ $role_id }}">{{ $role }}</option>
+                        <option {{in_array($role_id, old("roles") ?: []) ? "selected": ""}} value="{{ $role_id }}">{{ $role }}</option>
                     @endforeach
                 </select>
                 @if ($errors->has('roles'))
