@@ -9,12 +9,14 @@
         </ol>
         @include('layouts.flash-message')
         <div class="card mb-4">
-            <div class="card-header">
-                <div class="pull-left">
-                    <a href="{{ route('permissions.create') }}" class="btn btn-primary" style="float: right;">Add
-                        Permissions</a>
+            @can('add_permissions')
+                <div class="card-header">
+                    <div class="pull-left">
+                        <a href="{{ route('permissions.create') }}" class="btn btn-primary" style="float: right;">Add
+                            Permissions</a>
+                    </div>
                 </div>
-            </div>
+            @endcan
             <div class="card-body">
                 <table id="datatablesSimple">
                     <thead>
@@ -38,12 +40,12 @@
                                         <td class="text-center">
                                             @can('edit_permissions')
                                                 <a class="btn btn-sm btn-success"
-                                                    href="{{ route('permissions.show', $role->id) }}">Edit</a>
+                                                    href="{{ route('permissions.show', $permission->id) }}">Edit</a>
                                                 |
                                             @endcan
                                             @can('delete_permissions')
                                                 <a class="btn btn-sm btn-danger"
-                                                    href="{{ route('permissions.destroy', $role->id) }}">Delete</a>
+                                                    href="{{ route('permissions.destroy', $permission->id) }}">Delete</a>
                                             @endcan
                                         </td>
                                     @endcan

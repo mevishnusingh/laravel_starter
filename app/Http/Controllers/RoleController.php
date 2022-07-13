@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Permission;
 use App\Models\Role;
+use App\Traits\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class RoleController extends Controller
 {
+    use Authorizable;
     /**
      * Display a listing of the resource.
      *

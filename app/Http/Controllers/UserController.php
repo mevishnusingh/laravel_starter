@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\User;
+use App\Traits\Authorizable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    use Authorizable;
     /**
      * Display a listing of the resource.
      *

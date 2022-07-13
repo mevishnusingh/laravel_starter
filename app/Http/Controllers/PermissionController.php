@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Permission;
+use App\Traits\Authorizable;
 use Illuminate\Http\Request;
 
 class PermissionController extends Controller
 {
+    // use Authorizable;
     /**
      * Display a listing of the resource.
      *
