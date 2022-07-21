@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('frontend/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="/frontend/css/bootstrap.min.css" rel="stylesheet">
 
 
 </head>
@@ -76,8 +76,8 @@
         </main>
     </div>
 
-    <script src="{{ asset('frontend/js/jquery-3.6.0.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/js/jquery-ui.min.js') }}" defer></script>
-    <script src="{{ asset('frontend/js/bootstrap5.bundle.min.js') }}" defer></script>
+    <script src="/frontend/js/jquery-3.6.0.min.js" defer></script>
+    <script src="/frontend/js/jquery-ui.min.js'" defer></script>
+    <script src="/frontend/js/bootstrap5.bundle.min.js" defer></script>
 </body>
 </html>

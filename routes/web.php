@@ -4,6 +4,7 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use Stancl\Tenancy\Facades\Tenancy;
 
 /*
 |--------------------------------------------------------------------------

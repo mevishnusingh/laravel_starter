@@ -27,6 +27,17 @@
                 @endcan
             </div>
         </div>
+
+        <div class="sb-sidenav-footer">
+            @role('Admin')
+                <div>
+                    <span class="small">
+                        <button data-toggle="modal" data-target="#merchants" style="width: 100%" type="button"
+                            class="btn btn-success">Merchants</button>
+                    </span>
+                </div>
+            @endrole
+        </div>
         <div class="sb-sidenav-footer">
             <span class="small">Logged in as:</span>
             {{ Auth::user()->name }}
