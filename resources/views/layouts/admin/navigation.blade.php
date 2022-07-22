@@ -25,6 +25,12 @@
                         Permissions
                     </a>
                 @endcan
+                @can('view_merchants')
+                    <a class="nav-link" href="{{ route('merchants.index') }}">
+                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                        Merchants
+                    </a>
+                @endcan
             </div>
         </div>
 

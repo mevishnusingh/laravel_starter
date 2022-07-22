@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MerchantController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -34,6 +35,7 @@ Route::get('/admin', function () {
 
 Route::group( ['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
+    Route::resource('merchants', MerchantController::class);
     Route::get('/roles/permissions', [RoleController::class, 'permissions'])->name('roles.permissions');
     Route::resource('roles', RoleController::class);
     Route::resource('permissions', PermissionController::class);
